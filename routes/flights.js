@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
+const flightsCtrl = require('../controllers/flights');
 
-/* GET users listing. */
+router.get('/flights', flightsCtrl.flights);
+
 router.get('/', function(req, res, next) {
-  res.send('Mongoose-Flights');
+  res.render('flights', { title: 'MONGOOSE FLIGHTS' });
 });
-
 module.exports = router;
