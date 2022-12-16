@@ -4,52 +4,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>show</title>
-    <div class="topnav">
-      <a href="/">ALL FLIGHTS</a>
-      <a href="flights/new">ADD FLIGHTS</a>
-    </div>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Tickets</title>
 </head>
 <body>
-  <section id="show-page">
-    <div class="show">Airline: </div>
-    <div><%= flight.airline %></div>
-    <br>
-    <div class="show">Airport: </div>
-    <div><%= flight.airport %></div>
-    <br>
-    <div class="show">Flight Number: </div>
-    <div><%= flight.flightNo %></div>
-    <br>
-    <div class="show">Departs: </div>
-    <div><%= flight.departs %></div>
-    <br><br>
-            
-    <br>
-    <div>Tickets:</div>
-    <ul>
-      <% tickets.forEach(ticket => { %>
-      <li>SEAT: <%= ticket.seat %> Price: <%= ticket.price %>  </li> 
-      <% }) %> 
-    </ul>
-    <a href="/flights/<%=flight._id%>/tickets/new">ADD NEW TICKET</a>
-  </section>
+    <div class="topnav">
+        <a href="/">ALL FLIGHTS</a>
+        <a href="flights/new">ADD FLIGHTS</a>
+      </div>
+    <h1></h1>
+    <section id="show-page">
+        <div class="titlediv">Airline: </div>
+        <div><%= flight.airline %></div>
+        <br>
+        <div class="titlediv">Airport: </div>
+        <div><%= flight.airport %></div>
+        <br>
+        <div class="titlediv">Flight Number: </div>
+        <div><%= flight.flightNo %></div>
+        <br>
+        <div class="titlediv">Departs: </div>
+        <div><%= flight.departs %></div>
+        
+        <br>
 
-	<h2>Add Destinations</h2>
-	<form id="add-destinations-form" method="POST" action="/flights/<%= flight._id %>/destinations">
-		<label>Destinations:</label>
-		<select name="airport">
-			<option value="AUS">AUS</option>
-			<option value="DFW">DFW</option>
-			<option value="DEN">DEN</option>
-			<option value="LAX">LAX</option>
-			<option value="SAN" selected>SAN</option>
-		</select>
-        <label>Date:
-            <input type="datetime-local" name="arrival">
-        </label>
-		<input type="submit" value="Add Destination">
+        <div>Tickets:</div>
+        <ul>
+          <% tickets.forEach(ticket => { %>
+          <li>SEAT: <%= ticket.seat %> Price: <%= ticket.price %>  </li> 
+          <% }) %> 
+        </ul>
+        <a href="/flights/<%=flight._id%>/tickets/new">NEW TICKET</a>
+      </section>
+   
+     
+
+      <br><br><h2>New Destination</h2>
+<form  method="POST"
+  action="/flights/<%= flight._id %>/destinations">
+  <label>Airport:</label>
+  <select name="airport">
+    <option value="AUS">Austin</option>
+    <option value="DFW">Dallas</option>
+    <option value="DEN">Denver</option>
+    <option value="LAX">Los Angeles</option>
+    <option value="SAN" selected>San Diego</option>
+  </select>
+  <br>
+  <label>Arrival:</label>
+      <input type="datetime-local" name="arrival">
+  <input type="submit" value="Add Destination">
 </form>
 <br>
 <br>
@@ -59,6 +63,7 @@
       <tr>
         <th>Airport</th>
         <th>Arrival</th>
+        
       </tr>
       </thead>
       <tbody>
@@ -66,12 +71,14 @@
         <tr>
         <td><%= r.airport %></td>
         <td><%= r.arrival %></td>
+        
         </tr>
       <% }); %>
       </tbody>
     </table>
-  <% } else { %>
+    <% } else { %>
     <h5>No Destinations Listed</h5>
     <% } %>
+
 </body>
 </html>
